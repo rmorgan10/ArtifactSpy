@@ -35,7 +35,7 @@ err_code = os.system(test_command)
 if err_code != 0:
     print("\nError: Unable to login to UW-Madison HEP Computers.\n" +
           "\t - Check that your username was entered correctly\n" +
-          "\t - Check that you have ssh keys setup for login04.hep.wisc.edu\n\n")
+          "\t - Check that you have properly kerber-ized your computer\n\n")
     sys.exit()
 
 
