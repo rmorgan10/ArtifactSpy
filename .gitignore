@@ -1,0 +1,12 @@
+#emacs buffer files
+*~
+
+#python cache
+*__pycache__
+
+# User Directories
+Data
+Results
+
+# Log files
+*.log
