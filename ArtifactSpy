@@ -29,7 +29,7 @@ hep_username = input("Enter your UW-Madison HEP Username: ")
 os.system('kinit {}@HEP.WISC.EDU'.format(hep_username))
 
 # Check that username is accurate
-test_command = "ssh {}@login04.hep.wisc.edu 'touch /afs/hep.wisc.edu/home/ramorgan2/DES_DATA/test.txt'".format(hep_username)
+test_command = "ssh {}@login04.hep.wisc.edu 'touch /afs/hep.wisc.edu/bechtol-group/ArtifactSpy/test.txt'".format(hep_username)
 err_code = os.system(test_command)
 
 if err_code != 0:

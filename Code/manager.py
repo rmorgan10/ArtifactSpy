@@ -44,10 +44,10 @@ class Data():
         print("Downloading images, please wait")
         
         # Download data
-        os.system('scp {}@login04.hep.wisc.edu:/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/ImageBank/Batches/CURRENT--*.gz ../Data/Images/ >> ArtifactSpy.log'.format(self.hep_username))
+        os.system('scp {}@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/ImageBank/Batches/CURRENT--*.gz ../Data/Images/ >> ArtifactSpy.log'.format(self.hep_username))
 
         # Trigger organize_queue.py to queue up the next batch
-        os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/organize_queue.py' >> ArtifactSpy.log".format(self.hep_username))
+        os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/organize_queue.py' >> ArtifactSpy.log".format(self.hep_username))
 
         # Unpack tarball on local machine
         os.chdir('../Data/Images/')
@@ -223,9 +223,9 @@ class Session():
         
     def publish_results(self, filename):
         print("Publishing results ...")
-        os.system('scp {0} {1}@login04.hep.wisc.edu:/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/Results/UserResults'.format(filename, self.hep_username))
+        os.system('scp {0} {1}@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/Results/UserResults'.format(filename, self.hep_username))
 
-        os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/organize_receive.py'".format(self.hep_username))
+        os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/organize_receive.py'".format(self.hep_username))
 
         return
         

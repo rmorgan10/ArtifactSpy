@@ -20,7 +20,7 @@ if args.tarball == '':
 print("Don't forget, you were too lazy to make the back button work for this script, so do not use it\n")
     
 # Get the images
-os.system('scp ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/ImageBank/Unsure/{} .'.format(args.tarball))
+os.system('scp ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/ImageBank/Unsure/{} .'.format(args.tarball))
 os.system('tar -xzf ' + args.tarball)
 dir_name = args.tarball.split('.')[0]
 objids = [x.split('srch')[-1].split('.')[0] for x in glob.glob(dir_name + '/srch*.gif')]
@@ -55,7 +55,7 @@ for counter, objid in enumerate(objids):
 outdf = pd.DataFrame(data=my_labels, columns=['OBJID', 'ACTION', 'COMMENT'])
 outdf.to_csv(dir_name + '.csv', index=False)
 
-os.system('scp {}.csv ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/home/ramorgan2/DES_DATA/Results/UnsureResults/'.format(dir_name))
+os.system('scp {}.csv ramorgan2@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/Results/UnsureResults/'.format(dir_name))
 
 # Clean up this directory
 os.system('rm ' + args.tarball)
