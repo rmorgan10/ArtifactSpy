@@ -25,14 +25,14 @@ class Interface():
         return
 
     # Interface Properties
-    def display(self, objid):
+    def display(self, objid, path='../Data/Images/'):
         """
         Display stamps in a GUI for labeling
         
         :param objid: objid to be displayed
         """
         # Load stamps 
-        path = '../Data/Images/'
+        #path = '../Data/Images/'
         srch = plt.imread(path + 'srch' + objid + '.gif')
         temp = plt.imread(path + 'temp' + objid + '.gif')
         diff = plt.imread(path + 'diff' + objid + '.gif')
