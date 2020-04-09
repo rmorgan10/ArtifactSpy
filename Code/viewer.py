@@ -10,22 +10,23 @@ class Interface():
     """
     A GUI for labeling images
     """
-    def __init__(self, objid):
+    def __init__(self, objid, path='../Data/Images/'):
         """
         Set the objid and display the stamps. User selections will set 
         the 'user_action' attribute of this object.
         """
         self.objid = objid
+        self.path = path
         self.user_action = None
         self.user_comment = None
 
         # Show stamps to user and save action in self.user_action
-        self.display(objid)
+        self.display(objid, self.path)
 
         return
 
     # Interface Properties
-    def display(self, objid, path='../Data/Images/'):
+    def display(self, objid, path):
         """
         Display stamps in a GUI for labeling
         
