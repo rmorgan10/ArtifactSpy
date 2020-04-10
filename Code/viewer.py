@@ -216,10 +216,15 @@ class Interface():
 
         #Don't close the image in this case so that the user can still classify it
 
-        #TODO
-        print("Hey, sorry I haven't gotten around to making this button do anything yet.")
-        print("Just pop a screenshot in the #artifactspy channel or mark as Unsure.")
+        print("\n\nArtifactSpy Help:")
+        print("\n\tFor samples of each type of image artifact, open this link in a browser:")
+        print("\t\thttps://github.com/rmorgan10/ArtifactSpy#how-to-label-difference-images")
+        print("\n\tFor questions on an image, message Rob on Slack, or post in the #artifactspy channel")
+        print("\n\tIf you suspect a bug or got an error, contact Rob immediately.")
+        
         return
+
+
 
 
 
