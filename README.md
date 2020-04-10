@@ -10,6 +10,14 @@ cd ArtifactSpy
 chmod +x ArtifactSpy
 ```
 
+## An Important Note
+
+The images you are presented when using `ArtifactSpy` are from comparing DES Y6 images to DES SV-Y5 images across the entire footprint.
+**No one in the world has inspected these images yet.**
+The golden rule for using this tool is "If you see something, say something."
+Maybe you'll find a new gravitational lensing system; maybe you'll find new classes of image artifacts; maybe you'll find aliens.
+In any of these three scenarios, make note of the "Object ID" in the upper right corner of the graphic user interface, and let Rob Morgan know about it.
+
 ## Usage
 
 Start ArtifactSpy with the command
