@@ -12,7 +12,7 @@ chmod +x ArtifactSpy
 
 As you work through images, `ArtifactSpy` will automatically download new data for you when you are running low, and when you finish it will automatically send your results to the HEP cluster database.
 Because it does a lot of this type of thing, you will have a much smoother experience if you configure your computer to get a Kerberos ticket from HEP.WISC.EDU to avoid having to enter your password frequently.
-Information on setting this up can be found [here](https://wp.physics.wisc.edu/computing/ssh/#passwordless)
+Information on setting this up can be found [here](https://wp.physics.wisc.edu/computing/ssh/#passwordless).
 
 _Aside_: Do not set up ssh-keys on the HEP cluster to avoid entering your password. Use Kerberos.
 
