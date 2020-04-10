@@ -35,3 +35,8 @@ Based on what you see in the image, click the most appropriate box. When you are
 ## How to Label Difference Images
 
 ##  Behind the Scenes
+
+Holy cow is there a lot of behind the scenes stuff going on.
+
+- For the scripts that organize DES data and make it available on the HEP cluster, visit the [ArtifactSpy-Admin](https://github.com/rmorgan10/ArtifactSpy-Admin) repo.
+- For the scripts that organize results and queue up new data, visit the [ArtifactSpy-Database](https://github.com/rmorgan10/ArtifactSpy-Database) repo.
