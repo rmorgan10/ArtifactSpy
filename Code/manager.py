@@ -207,7 +207,7 @@ class Session():
                     self.metadata_stamps.append(metadata_stamp)
 
                     # Update list of objids to include new data
-                    data.remaining_objid_list = self.data.get_remaining_objids()
+                    self.data.remaining_objid_list = self.data.get_remaining_objids()
                 
             
         # Clean up images
