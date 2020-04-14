@@ -65,8 +65,7 @@ class Data():
         stream = open('metadata_stamps.log', 'r')
         metadata_stamps = [x.strip() for x in stream.readlines()]
         stream.close()
-        if len(metadata_stamps) >= 3:
-            outdated_metadata_stamp = metadata_stamps.pop() #garbage
+        
         metadata_stamps = [metadata_stamp] + metadata_stamps
         stream = open('metadata_stamps.log', 'w+')
         stream.writelines([x + '\n' for x in metadata_stamps])
@@ -152,10 +151,21 @@ class Session():
             self.metadata_stamps = []
 
         else:
-            #Read the log file
+            #Trim the file to just the most recent three
             stream = open('metadata_stamps.log', 'r')
-            self.metadata_stamps = [x.strip() for x in stream.readlines()]
+            metadata_stamps = [x.strip() for x in stream.readlines()]
             stream.close()
+            while len(metadata_stamps) > 3:
+                outdated_metadata_stamp = metadata_stamps.pop() #garbage
+
+            #Store recent stamps
+            self.metadata_stamps = metadata_stamps
+
+            #Update the file
+            stream = open('metadata_stamps.log', 'w+')
+            stream.writelines([x + '\n' for x in metadata_stamps])
+            stream.close()
+
         return
     
     def run(self):
