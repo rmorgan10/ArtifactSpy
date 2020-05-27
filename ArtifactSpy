@@ -39,4 +39,4 @@ if err_code != 0:
     sys.exit()
 
 
-os.system('python3 manager.py --username {}'.format(hep_username))
+os.system('python manager.py --username {}'.format(hep_username))
