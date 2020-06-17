@@ -185,7 +185,17 @@ class Interface():
         setattr(self, 'user_action', 'Other')
 
         # In this case, promt the user for more information
-        user_comment = input("\nUser Comment: ")
+        ## protect against clicking a button crashing the program by defaulting to Unsure
+        try:
+            user_comment = input("\nUser Comment: ")
+        except RuntimeError:
+            user_comment = "double click"
+            print("Please don't double click on the 'Other' button. "
+                  "Image has been labeled as 'Unsure' to prevent crash. "
+                  "Press enter to continue.")
+            print("You can use the 'Back' button to redo the image")
+            setattr(self, 'user_action', 'Unsure')
+
         setattr(self, 'user_comment', user_comment)
 
         plt.close()
