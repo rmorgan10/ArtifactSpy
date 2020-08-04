@@ -42,22 +42,28 @@ class Data():
     def download_from_hep(self):
         # Note that this requires a Kerberos ticket
         print("Downloading images, please wait")
+
+        # Check for any and all errors
+        rc = 0
         
         # Download data
-        os.system('scp {}@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/ImageBank/Batches/CURRENT--*.gz ../Data/Images/ >>ArtifactSpy.log 2>&1 '.format(self.hep_username))
+        rc += os.system('scp {}@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/ImageBank/Batches/CURRENT--*.gz ../Data/Images/ >>ArtifactSpy.log 2>&1 '.format(self.hep_username))
 
         # Trigger organize_queue.py to queue up the next batch
-        os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/organize_queue.py' >>ArtifactSpy.log 2>&1 ".format(self.hep_username))
+        rc += os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/organize_queue.py' >>ArtifactSpy.log 2>&1 ".format(self.hep_username))
 
         # Unpack tarball on local machine
         os.chdir('../Data/Images/')
-        os.system('tar -xzf *.gz')
+        rc += os.system('tar -xzf *.gz')
         batch_name = glob.glob('*.gz')[0].split('CURRENT--')[-1].split('.')[0]
-        os.system('rm *.gz')
-        os.system('mv {}/*.gif .'.format(batch_name))
-        os.system('rmdir ' + batch_name)
+        rc += os.system('rm *.gz')
+        rc += os.system('mv {}/*.gif .'.format(batch_name))
+        rc += os.system('rmdir ' + batch_name)
         os.chdir('../../Code')
 
+        # Throw an error if things broke during the downloading
+        if rc != 0: raise RuntimeError
+        
         # Get and return metadata_stamp
         metadata_stamp = batch_name.split('--')[-1]
 
@@ -184,7 +190,12 @@ class Session():
         incrementer = 0
         while True:
             incrementer += 1
-            current_objid = self.data.remaining_objid_list.pop()
+            try:
+                current_objid = self.data.remaining_objid_list.pop()
+            except IndexError:
+                print("ERROR: list of remaining object ids is empty")
+                print("ArtifactSpy will now close and submit finished images")
+                break
 
             user_response = self.tracker.show_image_to_user(current_objid)
             
@@ -213,7 +224,13 @@ class Session():
 
                 if self.data.need_more_data():
                     # Download data
-                    metadata_stamp = self.data.download_from_hep()
+                    try:
+                        metadata_stamp = self.data.download_from_hep()
+                    except RuntimeError:
+                        print("ERROR downloading images from HEP")
+                        print("ArtifactSpy will now close and submit finished images")
+                        break
+                        
                     self.metadata_stamps.append(metadata_stamp)
 
                     # Update list of objids to include new data
