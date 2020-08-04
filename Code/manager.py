@@ -44,10 +44,10 @@ class Data():
         print("Downloading images, please wait")
         
         # Download data
-        os.system('scp {}@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/ImageBank/Batches/CURRENT--*.gz ../Data/Images/ >> ArtifactSpy.log'.format(self.hep_username))
+        os.system('scp {}@login04.hep.wisc.edu:/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/ImageBank/Batches/CURRENT--*.gz ../Data/Images/ >>ArtifactSpy.log 2>&1 '.format(self.hep_username))
 
         # Trigger organize_queue.py to queue up the next batch
-        os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/organize_queue.py' >> ArtifactSpy.log".format(self.hep_username))
+        os.system("ssh {}@login04.hep.wisc.edu '/afs/hep.wisc.edu/bechtol-group/ArtifactSpy/organize_queue.py' >>ArtifactSpy.log 2>&1 ".format(self.hep_username))
 
         # Unpack tarball on local machine
         os.chdir('../Data/Images/')
