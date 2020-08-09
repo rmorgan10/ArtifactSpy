@@ -220,7 +220,7 @@ class Session():
             self.data.finished_objid_list.append(current_objid)
             
             # Every 10 images, do check if more data is needed
-            if incrementer % 10 == 0:
+            if incrementer % 4 == 0:
 
                 if self.data.need_more_data():
                     # Download data
